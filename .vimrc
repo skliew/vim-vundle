@@ -1,0 +1,83 @@
+set nocompatible
+syntax on
+
+:colorscheme vividchalk
+" Turn off useless toolbar
+"set guioptions-=T
+
+set t_Co=256
+set hlsearch
+set incsearch
+set backspace=2
+set ruler
+
+set hidden
+" Turn off menu bar (toggle with CTRL+F11)
+set nobackup
+set noswapfile
+set grepprg=ack
+" Turn off right-hand scroll-bar (toggle with CTRL+F7)
+set guioptions-=r
+set ff=unix
+let mapleader=","
+nmap <leader>b :FufBuffer<CR>
+nmap <leader>e :BufExplorer<CR>
+nmap <leader>f :Lid<CR><CR><CR>
+"nmap <leader>f :FufFile<CR>
+nmap <leader>t :NERDTreeToggle<CR>
+nmap <leader>g :TlistToggle<CR>
+"nmap <leader>r :Rgrep <C-R><C-W> *.p[ml]<CR>
+"nmap <leader>r :RgrepLast <C-R><C-W><CR>
+nmap <leader>r :grep -w <C-R><C-W><CR>
+
+set cscopequickfix=s-,g-
+
+set tabstop=2
+set shiftwidth=2
+set expandtab
+set gfn=Monaco\ 10
+set go-=m
+set go-=T
+set diffexpr=MyDiff()
+set cino=>2s
+set laststatus=2
+filetype plugin indent on
+function MyDiff()
+  let opt = '-a --binary '
+  if &diffopt =~ 'icase' | let opt = opt . '-i ' | endif
+  if &diffopt =~ 'iwhite' | let opt = opt . '-b ' | endif
+  let arg1 = v:fname_in
+  if arg1 =~ ' ' | let arg1 = '"' . arg1 . '"' | endif
+  let arg2 = v:fname_new
+  if arg2 =~ ' ' | let arg2 = '"' . arg2 . '"' | endif
+  let arg3 = v:fname_out
+  if arg3 =~ ' ' | let arg3 = '"' . arg3 . '"' | endif
+  let eq = ''
+  if $VIMRUNTIME =~ ' '
+    if &sh =~ '\<cmd'
+      let cmd = '""' . $VIMRUNTIME . '\diff"'
+      let eq = '"'
+    else
+      let cmd = substitute($VIMRUNTIME, ' ', '" ', '') . '\diff"'
+    endif
+  else
+    let cmd = $VIMRUNTIME . '\diff'
+  endif
+  silent execute '!' . cmd . ' ' . opt . arg1 . ' ' . arg2 . ' > ' . arg3 . eq
+endfunction
+
+set rtp+=~/.vim/bundle/vundle
+call vundle#rc()
+
+" let Vundle manage Vundle
+"  " required! 
+Bundle 'gmarik/vundle'
+
+Bundle 'FuzzyFinder'
+Bundle 'L9'
+Bundle 'The-NERD-tree'
+Bundle 'surround.vim'
+Bundle 'repeat.vim'
+Bundle 'snipMate'
+
+set guifontwide=mingliu
