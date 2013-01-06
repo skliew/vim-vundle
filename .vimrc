@@ -41,31 +41,8 @@ set go-=T
 set diffexpr=MyDiff()
 set cino=>2s
 set laststatus=2
-filetype plugin indent on
-function MyDiff()
-  let opt = '-a --binary '
-  if &diffopt =~ 'icase' | let opt = opt . '-i ' | endif
-  if &diffopt =~ 'iwhite' | let opt = opt . '-b ' | endif
-  let arg1 = v:fname_in
-  if arg1 =~ ' ' | let arg1 = '"' . arg1 . '"' | endif
-  let arg2 = v:fname_new
-  if arg2 =~ ' ' | let arg2 = '"' . arg2 . '"' | endif
-  let arg3 = v:fname_out
-  if arg3 =~ ' ' | let arg3 = '"' . arg3 . '"' | endif
-  let eq = ''
-  if $VIMRUNTIME =~ ' '
-    if &sh =~ '\<cmd'
-      let cmd = '""' . $VIMRUNTIME . '\diff"'
-      let eq = '"'
-    else
-      let cmd = substitute($VIMRUNTIME, ' ', '" ', '') . '\diff"'
-    endif
-  else
-    let cmd = $VIMRUNTIME . '\diff'
-  endif
-  silent execute '!' . cmd . ' ' . opt . arg1 . ' ' . arg2 . ' > ' . arg3 . eq
-endfunction
 
+filetype off
 set rtp+=~/.vim/bundle/vundle
 call vundle#rc()
 
@@ -79,5 +56,19 @@ Bundle 'The-NERD-tree'
 Bundle 'surround.vim'
 Bundle 'repeat.vim'
 Bundle 'snipMate'
+Bundle 'VimClojure'
+"Bundle 'slimv.vim'
+"Bundle 'jpalardy/vim-slime'
+Bundle 'kana/vim-filetype-haskell'
+
+filetype plugin indent on
+"let vimclojure#WantNailgun = 1
+"let vimclojure#NailgunServer = "localhost.localdomain"
+"
+"let vimclojure#FuzzyIndent=1
+"let vimclojure#HighlightBuiltins=1
+"let vimclojure#HighlightContrib=1
+"let vimclojure#DynamicHighlighting=1
+"let vimclojure#ParenRainbow=1
 
 set guifontwide=mingliu
