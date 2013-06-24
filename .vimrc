@@ -55,6 +55,7 @@ Bundle 'The-NERD-tree'
 Bundle 'surround.vim'
 Bundle 'repeat.vim'
 Bundle 'snipMate'
+Bundle 'fugitive.vim'
 "Bundle 'VimClojure'
 Bundle 'tpope/vim-fireplace'
 Bundle 'tpope/vim-classpath'
@@ -65,6 +66,7 @@ Bundle 'perl-support.vim'
 Bundle 'kana/vim-filetype-haskell'
 Bundle 'comments.vim'
 Bundle 'ragtag.vim'
+Bundle 'cscope_macros.vim'
 
 filetype plugin indent on
 "let vimclojure#WantNailgun = 1
