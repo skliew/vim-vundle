@@ -15,7 +15,7 @@ set hidden
 " Turn off menu bar (toggle with CTRL+F11)
 set nobackup
 set noswapfile
-set grepprg=ack
+set grepprg=ag
 " Turn off right-hand scroll-bar (toggle with CTRL+F7)
 set guioptions-=r
 set ff=unix
@@ -38,7 +38,6 @@ set expandtab
 set gfn=Monaco\ 10
 set go-=m
 set go-=T
-set diffexpr=MyDiff()
 set cino=>2s
 set laststatus=2
 
