@@ -58,7 +58,7 @@ Bundle 'snipMate'
 Bundle 'fugitive.vim'
 "Bundle 'VimClojure'
 Bundle 'tpope/vim-fireplace'
-Bundle 'tpope/vim-classpath'
+"Bundle 'tpope/vim-classpath'
 Bundle 'guns/vim-clojure-static'
 Bundle 'perl-support.vim'
 "Bundle 'slimv.vim'
@@ -80,3 +80,5 @@ filetype plugin indent on
 "let vimclojure#ParenRainbow=1
 
 set guifontwide=mingliu
+let g:html_indent_inctags = "body,html,head,p,tbody"
+
