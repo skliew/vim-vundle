@@ -42,32 +42,32 @@ set cino=>2s
 set laststatus=2
 
 filetype off
-set rtp+=~/.vim/bundle/vundle
+set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#rc()
 
 " let Vundle manage Vundle
 "  " required! 
-Bundle 'gmarik/vundle'
+Plugin 'gmarik/Vundle.vim'
 
-Bundle 'FuzzyFinder'
-Bundle 'L9'
-Bundle 'The-NERD-tree'
-Bundle 'surround.vim'
-Bundle 'repeat.vim'
-Bundle 'snipMate'
-Bundle 'fugitive.vim'
-"Bundle 'VimClojure'
-Bundle 'tpope/vim-fireplace'
-"Bundle 'tpope/vim-classpath'
-Bundle 'guns/vim-clojure-static'
-Bundle 'perl-support.vim'
-"Bundle 'slimv.vim'
-"Bundle 'jpalardy/vim-slime'
-Bundle 'kana/vim-filetype-haskell'
-Bundle 'jnwhiteh/vim-golang'
-Bundle 'comments.vim'
-Bundle 'ragtag.vim'
-Bundle 'cscope_macros.vim'
+Plugin 'FuzzyFinder'
+Plugin 'L9'
+Plugin 'The-NERD-tree'
+Plugin 'surround.vim'
+Plugin 'repeat.vim'
+Plugin 'snipMate'
+Plugin 'fugitive.vim'
+"Plugin 'VimClojure'
+Plugin 'tpope/vim-fireplace'
+"Plugin 'tpope/vim-classpath'
+Plugin 'guns/vim-clojure-static'
+Plugin 'perl-support.vim'
+"Plugin 'slimv.vim'
+"Plugin 'jpalardy/vim-slime'
+Plugin 'kana/vim-filetype-haskell'
+Plugin 'jnwhiteh/vim-golang'
+Plugin 'comments.vim'
+Plugin 'ragtag.vim'
+Plugin 'cscope_macros.vim'
 
 filetype plugin indent on
 "let vimclojure#WantNailgun = 1
