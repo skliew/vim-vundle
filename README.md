@@ -12,5 +12,5 @@ This is my setup using Vundle:
 
 Or use [setup.sh](setup.sh) to run the above steps.
 
-To install Vundle, see [https://github.com/gmarik/vundle](https://github.com/gmarik/vundle).
+To install Vundle, see [https://github.com/gmarik/Vundle.vim](https://github.com/gmarik/Vundle.vim).
 
