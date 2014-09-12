@@ -68,6 +68,8 @@ Plugin 'jnwhiteh/vim-golang'
 Plugin 'comments.vim'
 Plugin 'ragtag.vim'
 Plugin 'cscope_macros.vim'
+Plugin 'pangloss/vim-javascript'
+Plugin 'mxw/vim-jsx'
 
 filetype plugin indent on
 "let vimclojure#WantNailgun = 1
