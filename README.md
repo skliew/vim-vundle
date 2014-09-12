@@ -4,7 +4,7 @@ README
 This is my setup using Vundle:
 
 - cd ~
-- git clone https://github.com/darkgrin/vim-vundle.git .vim
+- git clone https://github.com/skliew/vim-vundle.git .vim
 - install Vundle
 - rm .vimrc # In case you already have one
 - ln -s $HOME/.vim/.vimrc .vimrc
