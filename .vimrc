@@ -71,6 +71,10 @@ Plugin 'cscope_macros.vim'
 Plugin 'pangloss/vim-javascript'
 Plugin 'mxw/vim-jsx'
 
+" Color schemes
+Plugin 'croaker/mustang-vim'
+Plugin 'twerth/ir_black'
+
 filetype plugin indent on
 "let vimclojure#WantNailgun = 1
 "let vimclojure#NailgunServer = "localhost.localdomain"
