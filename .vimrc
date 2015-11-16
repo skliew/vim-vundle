@@ -21,7 +21,7 @@ set ff=unix
 
 " Some shortcuts
 let mapleader=","
-nmap <leader>b :FufBuffer<CR>
+nmap <leader>b :CtrlPBuffer<CR>
 nmap <leader>f :Lid<CR><CR><CR>
 nmap <leader>f :FufFile<CR>
 nmap <leader>t :NERDTreeToggle<CR>
@@ -47,7 +47,7 @@ call vundle#rc()
 "  " required! 
 Plugin 'gmarik/Vundle.vim'
 
-Plugin 'FuzzyFinder'
+Plugin 'kien/ctrlp.vim'
 Plugin 'L9'
 Plugin 'The-NERD-tree'
 Plugin 'surround.vim'
