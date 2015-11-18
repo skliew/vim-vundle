@@ -77,3 +77,5 @@ let g:html_indent_inctags = "body,html,head,p,tbody"
 
 :colorscheme grb256
 
+set wildmenu
+set wildmode=list:longest,full
