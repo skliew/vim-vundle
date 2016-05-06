@@ -65,6 +65,7 @@ Plugin 'cscope_macros.vim'
 Plugin 'pangloss/vim-javascript'
 Plugin 'mxw/vim-jsx'
 Plugin 'wting/rust.vim'
+Plugin 'elzr/vim-json'
 
 " Color schemes
 Plugin 'croaker/mustang-vim'
@@ -74,6 +75,7 @@ filetype plugin indent on
 
 set guifontwide=mingliu
 let g:html_indent_inctags = "body,html,head,p,tbody"
+let g:vim_json_syntax_conceal = 0
 
 :colorscheme grb256
 
