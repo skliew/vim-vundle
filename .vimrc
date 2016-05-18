@@ -53,7 +53,7 @@ Plugin 'The-NERD-tree'
 Plugin 'surround.vim'
 Plugin 'repeat.vim'
 Plugin 'snipMate'
-Plugin 'fugitive.vim'
+Plugin 'tpope/vim-fugitive'
 Plugin 'tpope/vim-fireplace'
 Plugin 'guns/vim-clojure-static'
 Plugin 'perl-support.vim'
@@ -66,6 +66,8 @@ Plugin 'pangloss/vim-javascript'
 Plugin 'mxw/vim-jsx'
 Plugin 'wting/rust.vim'
 Plugin 'elzr/vim-json'
+Plugin 'derekwyatt/vim-scala'
+
 
 " Color schemes
 Plugin 'croaker/mustang-vim'
