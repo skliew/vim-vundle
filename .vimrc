@@ -47,7 +47,8 @@ call vundle#rc()
 "  " required! 
 Plugin 'gmarik/Vundle.vim'
 
-Plugin 'kien/ctrlp.vim'
+"Plugin 'kien/ctrlp.vim'
+Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'L9'
 Plugin 'The-NERD-tree'
 Plugin 'surround.vim'
@@ -78,6 +79,7 @@ filetype plugin indent on
 set guifontwide=mingliu
 let g:html_indent_inctags = "body,html,head,p,tbody"
 let g:vim_json_syntax_conceal = 0
+let g:ctrlp_working_path_mode = 'w'
 
 :colorscheme grb256
 
