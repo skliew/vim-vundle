@@ -23,7 +23,7 @@ set ff=unix
 let mapleader=","
 nmap <leader>b :CtrlPBuffer<CR>
 nmap <leader>f :Lid<CR><CR><CR>
-nmap <leader>f :FufFile<CR>
+nmap <leader>f :CtrlP<CR>
 nmap <leader>t :NERDTreeToggle<CR>
 nmap <leader>g :TlistToggle<CR>
 nmap <leader>r :grep -w <C-R><C-W><CR>
