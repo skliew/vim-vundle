@@ -27,6 +27,7 @@ nmap <leader>f :CtrlP<CR>
 nmap <leader>t :NERDTreeToggle<CR>
 nmap <leader>g :TlistToggle<CR>
 nmap <leader>r :grep -w <C-R><C-W><CR>
+nmap <leader>c :bp \| bd #<CR>
 
 set cscopequickfix=s-,g-
 
