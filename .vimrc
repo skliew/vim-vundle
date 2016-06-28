@@ -83,6 +83,7 @@ let g:vim_json_syntax_conceal = 0
 let g:ctrlp_working_path_mode = 'w'
 
 let g:syntastic_javascript_checkers = ['eslint']
+let b:syntastic_javascript_eslint_exec = './node_modules/eslint/bin/eslint.js'
 
 autocmd Filetype javascript setlocal sw=4
 
