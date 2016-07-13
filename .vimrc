@@ -26,7 +26,7 @@ nmap <leader>f :Lid<CR><CR><CR>
 nmap <leader>f :CtrlP<CR>
 nmap <leader>t :NERDTreeToggle<CR>
 nmap <leader>g :TlistToggle<CR>
-nmap <leader>r :grep -w <C-R><C-W><CR>
+nmap <leader>r :MyGrep -w <C-R><C-W><CR>
 nmap <leader>c :bp \| bd #<CR>
 
 set cscopequickfix=s-,g-
@@ -88,6 +88,13 @@ let b:syntastic_javascript_eslint_exec = './node_modules/eslint/bin/eslint.js'
 autocmd Filetype javascript setlocal sw=4
 
 :colorscheme grb256
+
+function MyGrepFunc(...)
+  silent execute 'grep ' . join(a:000, ' ')
+  redraw!
+endfunction
+
+command -nargs=* MyGrep call MyGrepFunc(<f-args>)
 
 set wildmenu
 set wildmode=list:longest,full
