@@ -76,6 +76,8 @@ Plugin 'scrooloose/syntastic'
 " Color schemes
 Plugin 'croaker/mustang-vim'
 Plugin 'twerth/ir_black'
+Plugin 'nanotech/jellybeans.vim'
+
 
 filetype plugin indent on
 
@@ -89,7 +91,10 @@ let b:syntastic_javascript_eslint_exec = './node_modules/eslint/bin/eslint.js'
 
 autocmd Filetype javascript setlocal sw=4
 
-:colorscheme grb256
+let g:jellybeans_overrides = {
+      \    'background': { 'ctermbg': 'none', '256ctermbg': 'none' },
+      \}
+:colorscheme jellybeans
 
 function MyGrepFunc(...)
   silent execute 'grep ' . join(a:000, ' ')
