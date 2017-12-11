@@ -29,6 +29,8 @@ nmap <leader>g :TlistToggle<CR>
 nmap <leader>r :MyGrep -w <C-R><C-W><CR>
 nmap <leader>c :bp \| bd #<CR>
 
+nmap <leader>p :let @" = expand("%")<CR>
+
 set cscopequickfix=s-,g-
 
 set tabstop=2
