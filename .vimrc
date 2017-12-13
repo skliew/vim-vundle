@@ -26,7 +26,7 @@ nmap <leader>f :Lid<CR><CR><CR>
 nmap <leader>f :CtrlP<CR>
 nmap <leader>t :NERDTreeToggle<CR>
 nmap <leader>g :TlistToggle<CR>
-nmap <leader>r :MyGrep -w <C-R><C-W><CR>
+nmap <leader>r :MyGrep -w <cword><CR>
 nmap <leader>c :bp \| bd #<CR>
 
 nmap <leader>p :let @" = expand("%")<CR>
