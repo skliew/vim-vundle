@@ -71,22 +71,32 @@ Plugin 'mxw/vim-jsx'
 Plugin 'wting/rust.vim'
 Plugin 'elzr/vim-json'
 Plugin 'derekwyatt/vim-scala'
-Plugin 'scrooloose/syntastic'
+Plugin 'vim-syntastic/syntastic'
+Plugin 'matchit.zip'
+Plugin 'udalov/kotlin-vim'
+Plugin 'hzchirs/vim-material'
+Plugin 'chriskempson/base16-vim'
+Plugin 'gosukiwi/vim-atom-dark'
+Plugin 'leafgarland/typescript-vim'
+Plugin 'fsharp/vim-fsharp'
 
 " Color schemes
 Plugin 'croaker/mustang-vim'
 Plugin 'twerth/ir_black'
 Plugin 'nanotech/jellybeans.vim'
 
-
 filetype plugin indent on
+set nofoldenable
+imap <C-c><C-o> <C-x><C-o>
 
 set guifontwide=mingliu
 let g:html_indent_inctags = "body,html,head,p,tbody"
 let g:vim_json_syntax_conceal = 0
 let g:ctrlp_working_path_mode = 'w'
+let g:ctrlp_custom_ignore = 'node_modules'
 
 let g:syntastic_javascript_checkers = ['eslint']
+
 let b:syntastic_javascript_eslint_exec = './node_modules/eslint/bin/eslint.js'
 
 autocmd Filetype javascript setlocal sw=4
