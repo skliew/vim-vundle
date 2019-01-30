@@ -79,6 +79,7 @@ Plugin 'chriskempson/base16-vim'
 Plugin 'gosukiwi/vim-atom-dark'
 Plugin 'leafgarland/typescript-vim'
 Plugin 'fsharp/vim-fsharp'
+Plugin 'OmniSharp/omnisharp-vim'
 
 " Color schemes
 Plugin 'croaker/mustang-vim'
