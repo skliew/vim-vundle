@@ -116,3 +116,6 @@ command -nargs=* MyGrep call MyGrepFunc(<f-args>)
 
 set wildmenu
 set wildmode=list:longest,full
+
+let g:syntastic_cs_checkers = ['code_checker']
+autocmd BufEnter,TextChanged,InsertLeave *.cs SyntasticCheck
