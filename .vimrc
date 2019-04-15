@@ -14,6 +14,7 @@ set hidden
 " Turn off menu bar (toggle with CTRL+F11)
 set nobackup
 set noswapfile
+" set grepprg=ag\ --vimgrep
 set grepprg=ag
 " Turn off right-hand scroll-bar (toggle with CTRL+F7)
 set guioptions-=r
@@ -28,6 +29,8 @@ nmap <leader>t :NERDTreeToggle<CR>
 nmap <leader>g :TlistToggle<CR>
 nmap <leader>r :MyGrep -w <cword><CR>
 nmap <leader>c :bp \| bd #<CR>
+" nmap <leader>j :%!python -m json.tool<CR>
+nmap <leader>j :%!pretty-print-json<CR>
 
 nmap <leader>p :let @" = expand("%")<CR>
 
@@ -60,7 +63,7 @@ Plugin 'snipMate'
 Plugin 'tpope/vim-fugitive'
 Plugin 'tpope/vim-fireplace'
 Plugin 'guns/vim-clojure-static'
-Plugin 'perl-support.vim'
+" Plugin 'perl-support.vim'
 Plugin 'kana/vim-filetype-haskell'
 Plugin 'jnwhiteh/vim-golang'
 Plugin 'tpope/vim-commentary'
@@ -102,10 +105,12 @@ let b:syntastic_javascript_eslint_exec = './node_modules/eslint/bin/eslint.js'
 
 autocmd Filetype javascript setlocal sw=4
 
-let g:jellybeans_overrides = {
-      \    'background': { 'ctermbg': 'none', '256ctermbg': 'none' },
-      \}
-:colorscheme jellybeans
+" let g:jellybeans_overrides = {
+"       \    'background': { 'ctermbg': 'none', '256ctermbg': 'none' },
+"       \}
+" :colorscheme jellybeans
+:colorscheme grb256
+" :colorscheme atom-dark-256
 
 function MyGrepFunc(...)
   silent execute 'grep ' . join(a:000, ' ')
@@ -116,6 +121,11 @@ command -nargs=* MyGrep call MyGrepFunc(<f-args>)
 
 set wildmenu
 set wildmode=list:longest,full
+
+set diffopt=vertical
+let g:xml_syntax_folding=1
+au FileType xml setlocal foldmethod=syntax
+let g:fsharp_map_keys = 0 
 
 let g:syntastic_cs_checkers = ['code_checker']
 autocmd BufEnter,TextChanged,InsertLeave *.cs SyntasticCheck
