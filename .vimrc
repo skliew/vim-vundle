@@ -131,4 +131,5 @@ let g:syntastic_cs_checkers = ['code_checker']
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 1
+let g:OmniSharp_server_stdio = 1
 " autocmd BufEnter,TextChanged,InsertLeave *.cs SyntasticCheck
