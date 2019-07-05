@@ -129,6 +129,7 @@ au FileType xml setlocal foldmethod=syntax
 let g:fsharp_map_keys = 0 
 
 let g:syntastic_cs_checkers = ['code_checker']
+let g:syntastic_typescript_checkers = ['tsuquyomi']
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_check_on_open = 0
 let g:syntastic_check_on_wq = 1
