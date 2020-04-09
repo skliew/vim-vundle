@@ -29,8 +29,8 @@ nmap <leader>t :NERDTreeToggle<CR>
 nmap <leader>g :TlistToggle<CR>
 nmap <leader>r :MyGrep -w <cword><CR>
 nmap <leader>c :bp \| bd #<CR>
-" nmap <leader>j :%!python -m json.tool<CR>
-nmap <leader>j :%!pretty-print-json<CR>
+nmap <leader>j :%!python -m json.tool<CR>
+" nmap <leader>j :%!-print-json<CR>
 
 nmap <leader>p :let @" = expand("%")<CR>
 
@@ -56,7 +56,7 @@ Plugin 'gmarik/Vundle.vim'
 "Plugin 'kien/ctrlp.vim'
 Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'L9'
-Plugin 'The-NERD-tree'
+Plugin 'scrooloose/nerdtree'
 Plugin 'surround.vim'
 Plugin 'repeat.vim'
 Plugin 'snipMate'
@@ -98,7 +98,7 @@ set guifontwide=mingliu
 let g:html_indent_inctags = "body,html,head,p,tbody"
 let g:vim_json_syntax_conceal = 0
 let g:ctrlp_working_path_mode = 'w'
-let g:ctrlp_custom_ignore = 'node_modules'
+let g:ctrlp_custom_ignore = './node_modules\|./acceptance_tests'
 
 let g:syntastic_javascript_checkers = ['eslint']
 
@@ -134,4 +134,9 @@ let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_check_on_open = 0
 let g:syntastic_check_on_wq = 1
 let g:OmniSharp_server_stdio = 1
+let g:OmniSharp_autoselect_existing_sln = 1
+" let g:OmniSharp_typeLookupInPreview = 1
 " autocmd BufEnter,TextChanged,InsertLeave *.cs SyntasticCheck
+" let g:OmniSharp_proc_debug=1
+" set clipboard+=unnamed
+set enc=utf8
