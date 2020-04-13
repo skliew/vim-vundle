@@ -42,7 +42,7 @@ set expandtab
 set gfn=Monaco\ 10
 set go-=m
 set go-=T
-set cino=>2s
+set cino=>2s,:2s,=2s
 set laststatus=2
 
 filetype off
