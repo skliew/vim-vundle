@@ -90,6 +90,9 @@ Plugin 'croaker/mustang-vim'
 Plugin 'twerth/ir_black'
 Plugin 'nanotech/jellybeans.vim'
 
+Plugin 'prabirshrestha/async.vim'
+Plugin 'prabirshrestha/vim-lsp'
+Plugin 'mattn/vim-lsp-settings'
 filetype plugin indent on
 set nofoldenable
 imap <C-c><C-o> <C-x><C-o>
@@ -140,3 +143,18 @@ let g:OmniSharp_autoselect_existing_sln = 1
 " let g:OmniSharp_proc_debug=1
 " set clipboard+=unnamed
 set enc=utf8
+
+function! s:on_lsp_buffer_enabled() abort
+  setlocal omnifunc=lsp#complete
+  " setlocal signcolumn=yes
+  nmap <buffer> gd <plug>(lsp-definition)
+  nmap <buffer> <f2> <plug>(lsp-rename)
+  " refer to doc to add more commands
+endfunction
+
+augroup lsp_install
+  au!
+  " call s:on_lsp_buffer_enabled only for languages that has the
+  " server registered.
+  autocmd User lsp_buffer_enabled call s:on_lsp_buffer_enabled()
+augroup END
