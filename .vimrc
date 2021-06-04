@@ -30,6 +30,7 @@ nmap <leader>g :TlistToggle<CR>
 nmap <leader>r :MyGrep -w <cword><CR>
 nmap <leader>c :bp \| bd #<CR>
 nmap <leader>j :%!python -m json.tool<CR>
+nmap <leader>k :%!jq -c .<CR>
 " nmap <leader>j :%!-print-json<CR>
 
 nmap <leader>p :let @" = expand("%")<CR>
