@@ -82,7 +82,7 @@ Plugin 'hzchirs/vim-material'
 Plugin 'chriskempson/base16-vim'
 Plugin 'gosukiwi/vim-atom-dark'
 Plugin 'leafgarland/typescript-vim'
-Plugin 'fsharp/vim-fsharp'
+Plugin 'ionide/Ionide-vim'
 Plugin 'OmniSharp/omnisharp-vim'
 Plugin 'Quramy/tsuquyomi'
 
@@ -91,9 +91,11 @@ Plugin 'croaker/mustang-vim'
 Plugin 'twerth/ir_black'
 Plugin 'nanotech/jellybeans.vim'
 
-Plugin 'prabirshrestha/async.vim'
-Plugin 'prabirshrestha/vim-lsp'
-Plugin 'mattn/vim-lsp-settings'
+Plugin 'autozimu/LanguageClient-neovim'
+
+" Plugin 'prabirshrestha/async.vim'
+" Plugin 'prabirshrestha/vim-lsp'
+" Plugin 'mattn/vim-lsp-settings'
 filetype plugin indent on
 set nofoldenable
 imap <C-c><C-o> <C-x><C-o>
