@@ -35,6 +35,8 @@ nmap <leader>k :%!jq -c .<CR>
 
 nmap <leader>p :let @" = expand("%")<CR>
 
+nnoremap <silent> <leader>e :call LanguageClient#explainErrorAtPoint()<CR>
+
 set cscopequickfix=s-,g-
 
 set tabstop=2
@@ -72,7 +74,7 @@ Plugin 'ragtag.vim'
 Plugin 'cscope_macros.vim'
 Plugin 'pangloss/vim-javascript'
 Plugin 'mxw/vim-jsx'
-Plugin 'wting/rust.vim'
+Plugin 'rust-lang/rust.vim'
 Plugin 'elzr/vim-json'
 Plugin 'derekwyatt/vim-scala'
 Plugin 'vim-syntastic/syntastic'
@@ -147,6 +149,8 @@ let g:OmniSharp_autoselect_existing_sln = 1
 " set clipboard+=unnamed
 set enc=utf8
 
+set shortmess-=F
+
 function! s:on_lsp_buffer_enabled() abort
   setlocal omnifunc=lsp#complete
   " setlocal signcolumn=yes
@@ -161,3 +165,8 @@ augroup lsp_install
   " server registered.
   autocmd User lsp_buffer_enabled call s:on_lsp_buffer_enabled()
 augroup END
+let g:LanguageClient_serverCommands = {
+      \ 'rust': ['rust-analyzer'],
+      \ }
+
+set completeopt=menu
