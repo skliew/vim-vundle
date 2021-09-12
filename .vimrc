@@ -87,6 +87,8 @@ Plugin 'leafgarland/typescript-vim'
 Plugin 'ionide/Ionide-vim'
 Plugin 'OmniSharp/omnisharp-vim'
 Plugin 'Quramy/tsuquyomi'
+Plugin 'neoclide/coc.nvim'
+Plugin 'scalameta/coc-metals'
 
 " Color schemes
 Plugin 'croaker/mustang-vim'
@@ -170,3 +172,9 @@ let g:LanguageClient_serverCommands = {
       \ }
 
 set completeopt=menu
+" Use <c-space> to trigger completion.
+if has('nvim')
+  inoremap <silent><expr> <c-space> coc#refresh()
+else
+  inoremap <silent><expr> <c-@> coc#refresh()
+endif
