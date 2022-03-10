@@ -64,8 +64,6 @@ Plugin 'surround.vim'
 Plugin 'repeat.vim'
 Plugin 'snipMate'
 Plugin 'tpope/vim-fugitive'
-Plugin 'tpope/vim-fireplace'
-Plugin 'guns/vim-clojure-static'
 " Plugin 'perl-support.vim'
 Plugin 'kana/vim-filetype-haskell'
 Plugin 'jnwhiteh/vim-golang'
@@ -174,6 +172,7 @@ let g:LanguageClient_serverCommands = {
 set completeopt=menu
 " Use <c-space> to trigger completion.
 if has('nvim')
+  Plugin 'neovim/nvim-lspconfig'
   inoremap <silent><expr> <c-space> coc#refresh()
 else
   inoremap <silent><expr> <c-@> coc#refresh()
@@ -181,3 +180,30 @@ endif
 
 let g:opamshare = substitute(system('opam var share'),'\n$','','''')
 execute "set rtp+=" . g:opamshare . "/merlin/vim"
+
+set completeopt-=preview
+if has('nvim')
+lua << EOF
+  local nvim_lsp = require'lspconfig'
+
+nvim_lsp.rust_analyzer.setup({
+settings = {
+  ["rust-analyzer"] = {
+    assist = {
+      importGranularity = "module",
+      importPrefix = "by_self",
+      },
+    cargo = {
+      loadOutDirsFromCheck = true
+      },
+    procMacro = {
+    enable = true
+    },
+    diagnostics = {
+       enable = true,
+       },
+  }
+}
+})
+EOF
+endif
