@@ -153,13 +153,15 @@ set enc=utf8
 
 set shortmess-=F
 
+if !has('nvim')
 function! s:on_lsp_buffer_enabled() abort
-  setlocal omnifunc=lsp#complete
+  " setlocal omnifunc=lsp#complete
   " setlocal signcolumn=yes
-  nmap <buffer> gd <plug>(lsp-definition)
-  nmap <buffer> <f2> <plug>(lsp-rename)
+  " nmap <buffer> gd <plug>(lsp-definition)
+  " nmap <buffer> <f2> <plug>(lsp-rename)
   " refer to doc to add more commands
 endfunction
+endif
 
 augroup lsp_install
   au!
@@ -181,13 +183,21 @@ else
 endif
 
 let g:opamshare = substitute(system('opam var share'),'\n$','','''')
-execute "set rtp+=" . g:opamshare . "/merlin/vim"
+" execute "set rtp+=" . g:opamshare . "/merlin/vim"
 
 set completeopt-=preview
 if has('nvim')
 lua << EOF
   local nvim_lsp = require'lspconfig'
-  nvim_lsp.hls.setup({})
+  local function hls_on_attach(client, bufnr)
+    local opts = { noremap=true, silent=true }
+    vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
+
+    vim.api.nvim_buf_set_keymap(bufnr, 'n', 'H', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
+  end
+  nvim_lsp.hls.setup({
+    on_attach = hls_on_attach
+  })
 
 nvim_lsp.rust_analyzer.setup({
 settings = {
@@ -210,3 +220,4 @@ settings = {
 })
 EOF
 endif
+let g:syntastic_ocaml_checkers = ['merlin']
