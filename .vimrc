@@ -94,6 +94,8 @@ Plugin 'twerth/ir_black'
 Plugin 'nanotech/jellybeans.vim'
 
 Plugin 'autozimu/LanguageClient-neovim'
+Plugin 'zah/nim.vim'
+
 
 " Plugin 'prabirshrestha/async.vim'
 " Plugin 'prabirshrestha/vim-lsp'
@@ -141,8 +143,8 @@ let g:syntastic_typescript_checkers = ['tsuquyomi']
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_check_on_open = 0
 let g:syntastic_check_on_wq = 1
-let g:OmniSharp_server_stdio = 1
 let g:OmniSharp_autoselect_existing_sln = 1
+let g:syntastic_ocaml_checkers = ['merlin']
 " let g:OmniSharp_typeLookupInPreview = 1
 " autocmd BufEnter,TextChanged,InsertLeave *.cs SyntasticCheck
 " let g:OmniSharp_proc_debug=1
@@ -185,6 +187,7 @@ set completeopt-=preview
 if has('nvim')
 lua << EOF
   local nvim_lsp = require'lspconfig'
+  nvim_lsp.hls.setup({})
 
 nvim_lsp.rust_analyzer.setup({
 settings = {
