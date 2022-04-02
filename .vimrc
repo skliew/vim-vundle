@@ -185,10 +185,10 @@ endif
 let g:opamshare = substitute(system('opam var share'),'\n$','','''')
 " execute "set rtp+=" . g:opamshare . "/merlin/vim"
 autocmd FileType fsharp setlocal commentstring=(*%s*)
+autocmd FileType haskell nnoremap <buffer> <silent> <leader>ll <cmd>lua vim.diagnostic.setloclist()<CR>
 
 set completeopt-=preview
 if has('nvim')
-  nnoremap <buffer> <silent> <leader>ll <cmd>lua vim.diagnostic.setloclist()<CR>
 lua << EOF
   local nvim_lsp = require'lspconfig'
   local function hls_on_attach(client, bufnr)
