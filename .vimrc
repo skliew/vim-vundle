@@ -38,6 +38,7 @@ nmap <leader>p :let @" = expand("%")<CR>
 nnoremap <silent> <leader>e :call LanguageClient#explainErrorAtPoint()<CR>
 
 set cscopequickfix=s-,g-
+set fileencodings=utf-8,euc-jp
 
 set tabstop=2
 set shiftwidth=2
@@ -223,3 +224,4 @@ settings = {
 EOF
 endif
 let g:syntastic_ocaml_checkers = ['merlin']
+set diffopt+=iwhite
