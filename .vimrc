@@ -221,6 +221,15 @@ settings = {
   }
 }
 })
+nvim_lsp.tsserver.setup({
+    on_attach = function(client, bufnr)
+        local opts = { noremap=true, silent=true }
+        vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
+
+        vim.api.nvim_buf_set_keymap(bufnr, 'n', 'H', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
+        vim.cmd("command! LspDef lua vim.lsp.buf.definition()")
+    end,
+})
 EOF
 endif
 let g:syntastic_ocaml_checkers = ['merlin']
