@@ -14,8 +14,7 @@ set hidden
 " Turn off menu bar (toggle with CTRL+F11)
 set nobackup
 set noswapfile
-" set grepprg=ag\ --vimgrep
-set grepprg=ag
+set grepprg=ag\ --vimgrep
 " Turn off right-hand scroll-bar (toggle with CTRL+F7)
 set guioptions-=r
 set ff=unix
@@ -37,7 +36,6 @@ nmap <leader>p :let @" = expand("%")<CR>
 
 nnoremap <silent> <leader>e :call LanguageClient#explainErrorAtPoint()<CR>
 
-set cscopequickfix=s-,g-
 set fileencodings=utf-8,euc-jp
 
 set tabstop=2
@@ -75,7 +73,6 @@ Plugin 'pangloss/vim-javascript'
 Plugin 'mxw/vim-jsx'
 Plugin 'rust-lang/rust.vim'
 Plugin 'elzr/vim-json'
-Plugin 'derekwyatt/vim-scala'
 Plugin 'vim-syntastic/syntastic'
 Plugin 'matchit.zip'
 Plugin 'udalov/kotlin-vim'
@@ -83,24 +80,19 @@ Plugin 'hzchirs/vim-material'
 Plugin 'chriskempson/base16-vim'
 Plugin 'gosukiwi/vim-atom-dark'
 Plugin 'leafgarland/typescript-vim'
-Plugin 'ionide/Ionide-vim'
+Plugin 'PhilT/vim-fsharp'
 Plugin 'OmniSharp/omnisharp-vim'
 Plugin 'Quramy/tsuquyomi'
-Plugin 'neoclide/coc.nvim'
-Plugin 'scalameta/coc-metals'
 
 " Color schemes
 Plugin 'croaker/mustang-vim'
 Plugin 'twerth/ir_black'
 Plugin 'nanotech/jellybeans.vim'
 
-Plugin 'autozimu/LanguageClient-neovim'
 Plugin 'zah/nim.vim'
 
+Plugin 'andy-morris/happy.vim'
 
-" Plugin 'prabirshrestha/async.vim'
-" Plugin 'prabirshrestha/vim-lsp'
-" Plugin 'mattn/vim-lsp-settings'
 filetype plugin indent on
 set nofoldenable
 imap <C-c><C-o> <C-x><C-o>
@@ -109,19 +101,21 @@ set guifontwide=mingliu
 let g:html_indent_inctags = "body,html,head,p,tbody"
 let g:vim_json_syntax_conceal = 0
 let g:ctrlp_working_path_mode = 'w'
-let g:ctrlp_custom_ignore = './node_modules\|./acceptance_tests'
+let g:ctrlp_custom_ignore = './node_modules\|./acceptance_tests\|./target\|./tests'
 
 let g:syntastic_javascript_checkers = ['eslint']
 
 let b:syntastic_javascript_eslint_exec = './node_modules/eslint/bin/eslint.js'
 
 autocmd Filetype javascript setlocal sw=4
+autocmd Filetype fsharp set commentstring=//%s
 
 " let g:jellybeans_overrides = {
 "       \    'background': { 'ctermbg': 'none', '256ctermbg': 'none' },
 "       \}
 " :colorscheme jellybeans
-:colorscheme grb256
+:colorscheme ir_black
+" :colorscheme grb256
 " :colorscheme atom-dark-256
 
 function MyGrepFunc(...)
@@ -144,6 +138,7 @@ let g:syntastic_typescript_checkers = ['tsuquyomi']
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_check_on_open = 0
 let g:syntastic_check_on_wq = 1
+let g:OmniSharp_loglevel = "debug"
 let g:OmniSharp_autoselect_existing_sln = 1
 let g:syntastic_ocaml_checkers = ['merlin']
 " let g:OmniSharp_typeLookupInPreview = 1
@@ -186,7 +181,6 @@ endif
 let g:opamshare = substitute(system('opam var share'),'\n$','','''')
 " execute "set rtp+=" . g:opamshare . "/merlin/vim"
 autocmd FileType fsharp setlocal commentstring=(*%s*)
-autocmd FileType haskell nnoremap <buffer> <silent> <leader>ll <cmd>lua vim.diagnostic.setloclist()<CR>
 
 set completeopt-=preview
 if has('nvim')
@@ -194,15 +188,21 @@ lua << EOF
   local nvim_lsp = require'lspconfig'
   local function hls_on_attach(client, bufnr)
     local opts = { noremap=true, silent=true }
-    vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
-
     vim.api.nvim_buf_set_keymap(bufnr, 'n', 'H', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
   end
   nvim_lsp.hls.setup({
     on_attach = hls_on_attach
   })
 
+nvim_lsp.fsautocomplete.setup({
+cmd = { "fsautocomplete", "--background-service-enabled" },
+on_attach = function(client, bufnr)
+  local opts = { noremap=true, silent=true }
+  vim.api.nvim_buf_set_keymap(bufnr, 'n', 'H', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
+end
+})
 nvim_lsp.rust_analyzer.setup({
+cmd = { "rust-analyzer" },
 settings = {
   ["rust-analyzer"] = {
     assist = {
@@ -233,4 +233,13 @@ nvim_lsp.tsserver.setup({
 EOF
 endif
 let g:syntastic_ocaml_checkers = ['merlin']
+" For vimdiff
 set diffopt+=iwhite
+
+nmap <leader>ll :lua vim.diagnostic.setloclist()<CR>
+
+augroup sml
+  autocmd BufNewFile,BufRead *.fun set filetype=sml
+augroup END
+
+let g:OmniSharp_server_use_net6 = 1
