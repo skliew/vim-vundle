@@ -243,3 +243,6 @@ augroup sml
 augroup END
 
 let g:OmniSharp_server_use_net6 = 1
+
+" Disable mouse
+set mouse=
