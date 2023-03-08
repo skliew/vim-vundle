@@ -82,7 +82,6 @@ Plugin 'gosukiwi/vim-atom-dark'
 Plugin 'leafgarland/typescript-vim'
 Plugin 'PhilT/vim-fsharp'
 Plugin 'OmniSharp/omnisharp-vim'
-Plugin 'Quramy/tsuquyomi'
 
 " Color schemes
 Plugin 'croaker/mustang-vim'
@@ -173,14 +172,16 @@ set completeopt=menu
 " Use <c-space> to trigger completion.
 if has('nvim')
   Plugin 'neovim/nvim-lspconfig'
-  inoremap <silent><expr> <c-space> coc#refresh()
-else
-  inoremap <silent><expr> <c-@> coc#refresh()
 endif
 
 let g:opamshare = substitute(system('opam var share'),'\n$','','''')
 " execute "set rtp+=" . g:opamshare . "/merlin/vim"
 autocmd FileType fsharp setlocal commentstring=(*%s*)
+
+function VimBufCommand()
+  let l:command = input('command: ')
+  execute "lua vim.lsp.buf." . l:command . '()'
+endfunction
 
 set completeopt-=preview
 if has('nvim')
@@ -237,6 +238,7 @@ let g:syntastic_ocaml_checkers = ['merlin']
 set diffopt+=iwhite
 
 nmap <leader>ll :lua vim.diagnostic.setloclist()<CR>
+nmap <leader>v :call VimBufCommand()<CR>
 
 augroup sml
   autocmd BufNewFile,BufRead *.fun set filetype=sml
