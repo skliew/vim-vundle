@@ -231,6 +231,7 @@ nvim_lsp.tsserver.setup({
         vim.cmd("command! LspDef lua vim.lsp.buf.definition()")
     end,
 })
+nvim_lsp.ocamllsp.setup({})
 EOF
 endif
 let g:syntastic_ocaml_checkers = ['merlin']
