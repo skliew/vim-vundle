@@ -34,8 +34,6 @@ nmap <leader>k :%!jq -c .<CR>
 
 nmap <leader>p :let @" = expand("%")<CR>
 
-nnoremap <silent> <leader>e :call LanguageClient#explainErrorAtPoint()<CR>
-
 set fileencodings=utf-8,euc-jp
 
 set tabstop=2
@@ -250,3 +248,6 @@ let g:OmniSharp_server_use_net6 = 1
 
 " Disable mouse
 set mouse=
+hi Type ctermfg=lightblue
+
+map <leader>e :lua vim.diagnostic.open_float(0, {scope="line"})<CR>
