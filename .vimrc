@@ -53,7 +53,6 @@ call vundle#rc()
 "  " required! 
 Plugin 'gmarik/Vundle.vim'
 
-"Plugin 'kien/ctrlp.vim'
 Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'L9'
 Plugin 'scrooloose/nerdtree'
@@ -61,8 +60,6 @@ Plugin 'surround.vim'
 Plugin 'repeat.vim'
 Plugin 'snipMate'
 Plugin 'tpope/vim-fugitive'
-" Plugin 'perl-support.vim'
-" Plugin 'kana/vim-filetype-haskell'
 Plugin 'jnwhiteh/vim-golang'
 Plugin 'tpope/vim-commentary'
 Plugin 'ragtag.vim'
@@ -139,23 +136,9 @@ let g:syntastic_check_on_wq = 1
 let g:OmniSharp_loglevel = "debug"
 let g:OmniSharp_autoselect_existing_sln = 1
 let g:syntastic_ocaml_checkers = ['merlin']
-" let g:OmniSharp_typeLookupInPreview = 1
-" autocmd BufEnter,TextChanged,InsertLeave *.cs SyntasticCheck
-" let g:OmniSharp_proc_debug=1
-" set clipboard+=unnamed
 set enc=utf8
 
 set shortmess-=F
-
-if !has('nvim')
-function! s:on_lsp_buffer_enabled() abort
-  " setlocal omnifunc=lsp#complete
-  " setlocal signcolumn=yes
-  " nmap <buffer> gd <plug>(lsp-definition)
-  " nmap <buffer> <f2> <plug>(lsp-rename)
-  " refer to doc to add more commands
-endfunction
-endif
 
 augroup lsp_install
   au!
@@ -182,65 +165,6 @@ function VimBufCompletion(A, L, P)
 endfunction
 
 set completeopt-=preview
-if has('nvim')
-lua << EOF
-  function VimBufCommand()
-    vim.ui.input({ prompt = 'command: ', completion = 'customlist,VimBufCompletion' }, function(input)
-       if input then
-         vim.lsp.buf[input]()
-       end
-    end)
-  end
-
-  local nvim_lsp = require'lspconfig'
-  local function hls_on_attach(client, bufnr)
-    local opts = { noremap=true, silent=true }
-    vim.api.nvim_buf_set_keymap(bufnr, 'n', 'H', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
-    vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
-  end
-  nvim_lsp.hls.setup({
-    on_attach = hls_on_attach
-  })
-
-nvim_lsp.fsautocomplete.setup({
-cmd = { "fsautocomplete", "--background-service-enabled" },
-on_attach = function(client, bufnr)
-  local opts = { noremap=true, silent=true }
-  vim.api.nvim_buf_set_keymap(bufnr, 'n', 'H', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
-end
-})
-nvim_lsp.rust_analyzer.setup({
-cmd = { "rust-analyzer" },
-settings = {
-  ["rust-analyzer"] = {
-    assist = {
-      importGranularity = "module",
-      importPrefix = "by_self",
-      },
-    cargo = {
-      loadOutDirsFromCheck = true
-      },
-    procMacro = {
-    enable = true
-    },
-    diagnostics = {
-       enable = true,
-       },
-  }
-}
-})
-nvim_lsp.tsserver.setup({
-    on_attach = function(client, bufnr)
-        local opts = { noremap=true, silent=true }
-        vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
-
-        vim.api.nvim_buf_set_keymap(bufnr, 'n', 'H', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
-        vim.cmd("command! LspDef lua vim.lsp.buf.definition()")
-    end,
-})
-nvim_lsp.ocamllsp.setup({})
-EOF
-endif
 let g:syntastic_ocaml_checkers = ['merlin']
 " For vimdiff
 set diffopt+=iwhite
