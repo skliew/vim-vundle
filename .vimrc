@@ -177,18 +177,26 @@ let g:opamshare = substitute(system('opam var share'),'\n$','','''')
 " execute "set rtp+=" . g:opamshare . "/merlin/vim"
 autocmd FileType fsharp setlocal commentstring=(*%s*)
 
-function VimBufCommand()
-  let l:command = input('command: ')
-  execute "lua vim.lsp.buf." . l:command . '()'
+function VimBufCompletion(A, L, P)
+  return getcompletion("lua vim.lsp.buf." . a:A, 'cmdline', '')
 endfunction
 
 set completeopt-=preview
 if has('nvim')
 lua << EOF
+  function VimBufCommand()
+    vim.ui.input({ prompt = 'command: ', completion = 'customlist,VimBufCompletion' }, function(input)
+       if input then
+         vim.lsp.buf[input]()
+       end
+    end)
+  end
+
   local nvim_lsp = require'lspconfig'
   local function hls_on_attach(client, bufnr)
     local opts = { noremap=true, silent=true }
     vim.api.nvim_buf_set_keymap(bufnr, 'n', 'H', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
+    vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
   end
   nvim_lsp.hls.setup({
     on_attach = hls_on_attach
@@ -238,7 +246,7 @@ let g:syntastic_ocaml_checkers = ['merlin']
 set diffopt+=iwhite
 
 nmap <leader>ll :lua vim.diagnostic.setloclist()<CR>
-nmap <leader>v :call VimBufCommand()<CR>
+nmap <leader>v :lua VimBufCommand()<CR>
 
 augroup sml
   autocmd BufNewFile,BufRead *.fun set filetype=sml
