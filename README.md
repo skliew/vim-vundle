@@ -10,6 +10,9 @@ This is my setup using Vundle:
 - ln -s $HOME/.vim/.vimrc .vimrc
 - run BundleInstall in vim
 
+When using Neovim,
+- ln -s $HOME/.vim/init.lua $HOME/.config/nvim/init.lua
+
 Or use [setup.sh](setup.sh) to run the above steps.
 
 To install Vundle, see [https://github.com/gmarik/Vundle.vim](https://github.com/gmarik/Vundle.vim).
