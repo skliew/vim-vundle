@@ -160,17 +160,13 @@ let g:opamshare = substitute(system('opam var share'),'\n$','','''')
 " execute "set rtp+=" . g:opamshare . "/merlin/vim"
 autocmd FileType fsharp setlocal commentstring=(*%s*)
 
-function VimBufCompletion(A, L, P)
-  return getcompletion("lua vim.lsp.buf." . a:A, 'cmdline', '')
-endfunction
-
 set completeopt-=preview
 let g:syntastic_ocaml_checkers = ['merlin']
 " For vimdiff
 set diffopt+=iwhite
 
 nmap <leader>ll :lua vim.diagnostic.setloclist()<CR>
-nmap <leader>v :lua VimBufCommand()<CR>
+nmap <leader>v :call v:lua.VimBufCommand()<CR>
 
 augroup sml
   autocmd BufNewFile,BufRead *.fun set filetype=sml

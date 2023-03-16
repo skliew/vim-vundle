@@ -1,6 +1,11 @@
-vim.cmd('source ~/.vimrc')
+vim.cmd([[source ~/.vimrc]])
+
+function VimBufCompletion(A, L, P)
+  return vim.api.nvim_call_function('getcompletion', {"lua vim.lsp.buf." .. A , 'cmdline', ''})
+end
+
 function VimBufCommand()
-  vim.ui.input({ prompt = 'command: ', completion = 'customlist,VimBufCompletion' }, function(input)
+  vim.ui.input({ prompt = 'command: ', completion = 'customlist,v:lua.VimBufCompletion' }, function(input)
     if input then
       vim.lsp.buf[input]()
     end
@@ -14,7 +19,6 @@ local function hls_on_attach(client, bufnr)
   vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
 end
 nvim_lsp.hls.setup({
-  cmd = { "haskell-language-server-wrapper", "--lsp" },
   on_attach = hls_on_attach
 })
 
