@@ -140,21 +140,12 @@ set enc=utf8
 
 set shortmess-=F
 
-augroup lsp_install
-  au!
-  " call s:on_lsp_buffer_enabled only for languages that has the
-  " server registered.
-  autocmd User lsp_buffer_enabled call s:on_lsp_buffer_enabled()
-augroup END
 let g:LanguageClient_serverCommands = {
       \ 'rust': ['rust-analyzer'],
       \ }
 
 set completeopt=menu
 " Use <c-space> to trigger completion.
-if has('nvim')
-  Plugin 'neovim/nvim-lspconfig'
-endif
 
 let g:opamshare = substitute(system('opam var share'),'\n$','','''')
 " execute "set rtp+=" . g:opamshare . "/merlin/vim"

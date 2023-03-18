@@ -1,4 +1,16 @@
+vim.opt.packpath:append('~/.vim/packpath')
+vim.g.editorconfig = false
 vim.cmd([[source ~/.vimrc]])
+
+local packer = require('packer')
+packer.init({
+  package_root = "~/.vim/packpath/pack"
+})
+packer.startup(function(use)
+  use('neovim/nvim-lspconfig')
+  use('wbthomason/packer.nvim')
+end)
+
 
 function VimBufCompletion(A, L, P)
   return vim.api.nvim_call_function('getcompletion', {"lua vim.lsp.buf." .. A , 'cmdline', ''})

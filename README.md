@@ -5,6 +5,7 @@ This is my setup using Vundle:
 
 - cd ~
 - git clone https://github.com/skliew/vim-vundle.git .vim
+- git clone --depth 1 https://github.com/wbthomason/packer.nvim .vim/packpath/pack/packer/start/packer.nvim
 - install Vundle
 - rm .vimrc # In case you already have one
 - ln -s $HOME/.vim/.vimrc .vimrc
