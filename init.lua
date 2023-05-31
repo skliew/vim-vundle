@@ -35,7 +35,7 @@ nvim_lsp.hls.setup({
 })
 
 nvim_lsp.fsautocomplete.setup({
-  cmd = { "fsautocomplete", "--background-service-enabled" },
+  cmd = { "fsautocomplete" },
   on_attach = function(client, bufnr)
     local opts = { noremap=true, silent=true }
     vim.api.nvim_buf_set_keymap(bufnr, 'n', 'H', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
@@ -70,4 +70,15 @@ nvim_lsp.tsserver.setup({
     vim.cmd("command! LspDef lua vim.lsp.buf.definition()")
   end,
 })
+require('telescope').setup{
+  pickers = {
+    buffers = {
+      sort_lastused = true
+    }
+  },
+  defaults = {
+    preview = false
+  }
+}
+nvim_lsp.zls.setup({})
 nvim_lsp.ocamllsp.setup({})
