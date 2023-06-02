@@ -41,6 +41,7 @@ nvim_lsp.fsautocomplete.setup({
     vim.api.nvim_buf_set_keymap(bufnr, 'n', 'H', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
   end
 })
+
 nvim_lsp.rust_analyzer.setup({
   cmd = { "rust-analyzer" },
   settings = {
@@ -82,3 +83,15 @@ require('telescope').setup{
 }
 nvim_lsp.zls.setup({})
 nvim_lsp.ocamllsp.setup({})
+nvim_lsp.zls.setup({})
+nvim_lsp.nim_langserver.setup({})
+require('telescope').setup{
+  defaults = {
+    preview = false
+  },
+  pickers = {
+    buffers = {
+      sort_lastused = true
+    }
+  }
+}
