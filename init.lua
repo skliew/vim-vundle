@@ -9,6 +9,8 @@ packer.init({
 packer.startup(function(use)
   use('neovim/nvim-lspconfig')
   use('wbthomason/packer.nvim')
+  use('nvim-telescope/telescope.nvim')
+  use('nvim-lua/plenary.nvim')
 end)
 
 

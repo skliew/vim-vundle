@@ -13,6 +13,7 @@ This is my setup using Vundle:
 
 When using Neovim,
 - ln -s $HOME/.vim/init.lua $HOME/.config/nvim/init.lua
+- run PackerInstall in nvim
 
 Or use [setup.sh](setup.sh) to run the above steps.
 

@@ -8,3 +8,4 @@ ln -s $HOME/.vim/.vimrc .vimrc
 vim +PluginInstall +q +q
 
 ln -s $HOME/.vim/init.lua $HOME/.config/nvim/init.lua
+nvim +PackerInstall +q +q
