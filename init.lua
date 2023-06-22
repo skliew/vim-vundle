@@ -73,16 +73,7 @@ nvim_lsp.tsserver.setup({
     vim.cmd("command! LspDef lua vim.lsp.buf.definition()")
   end,
 })
-require('telescope').setup{
-  pickers = {
-    buffers = {
-      sort_lastused = true
-    }
-  },
-  defaults = {
-    preview = false
-  }
-}
+
 nvim_lsp.zls.setup({})
 nvim_lsp.ocamllsp.setup({})
 nvim_lsp.zls.setup({})
