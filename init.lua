@@ -80,7 +80,8 @@ nvim_lsp.zls.setup({})
 nvim_lsp.nim_langserver.setup({})
 require('telescope').setup{
   defaults = {
-    preview = false
+    preview = false,
+    sorting_strategy = 'ascending'
   },
   pickers = {
     buffers = {
