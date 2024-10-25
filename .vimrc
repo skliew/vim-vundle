@@ -14,21 +14,23 @@ set hidden
 " Turn off menu bar (toggle with CTRL+F11)
 set nobackup
 set noswapfile
-set grepprg=ag\ --vimgrep
+set grepprg=rg\ --vimgrep
 " Turn off right-hand scroll-bar (toggle with CTRL+F7)
 set guioptions-=r
 set ff=unix
 
 " Some shortcuts
 let mapleader=","
-nmap <leader>b :CtrlPBuffer<CR>
-nmap <leader>f :Lid<CR><CR><CR>
-nmap <leader>f :CtrlP<CR>
+" nmap <leader>b :CtrlPBuffer<CR>
+" nmap <leader>f :Lid<CR><CR><CR>
+" nmap <leader>f :CtrlP<CR>
+nmap <leader>f :Telescope find_files<CR>
+nmap <leader>b :Telescope buffers<CR>
 nmap <leader>t :NERDTreeToggle<CR>
 nmap <leader>g :TlistToggle<CR>
 nmap <leader>r :MyGrep -w <cword><CR>
 nmap <leader>c :bp \| bd #<CR>
-nmap <leader>j :%!python -m json.tool<CR>
+nmap <leader>j :%!jq<CR>
 nmap <leader>k :%!jq -c .<CR>
 " nmap <leader>j :%!-print-json<CR>
 
@@ -78,6 +80,8 @@ Plugin 'leafgarland/typescript-vim'
 Plugin 'PhilT/vim-fsharp'
 Plugin 'OmniSharp/omnisharp-vim'
 Plugin 'neovimhaskell/haskell-vim'
+Plugin 'ziglang/zig.vim'
+Plugin 'peitalin/vim-jsx-typescript'
 
 " Color schemes
 Plugin 'croaker/mustang-vim'
@@ -85,8 +89,12 @@ Plugin 'twerth/ir_black'
 Plugin 'nanotech/jellybeans.vim'
 
 Plugin 'zah/nim.vim'
+" Plugin 'vim-scripts/nimrod.vim'
 
 Plugin 'andy-morris/happy.vim'
+Plugin 'nvim-treesitter/nvim-treesitter'
+Plugin 'nvim-telescope/telescope.nvim'
+Plugin 'nvim-lua/plenary.nvim'
 
 filetype plugin indent on
 set nofoldenable
@@ -170,3 +178,4 @@ set mouse=
 hi Type ctermfg=lightblue
 
 map <leader>e :lua vim.diagnostic.open_float(0, {scope="line"})<CR>
+
