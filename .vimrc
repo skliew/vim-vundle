@@ -21,9 +21,6 @@ set ff=unix
 
 " Some shortcuts
 let mapleader=","
-" nmap <leader>b :CtrlPBuffer<CR>
-" nmap <leader>f :Lid<CR><CR><CR>
-" nmap <leader>f :CtrlP<CR>
 nmap <leader>f :Telescope find_files<CR>
 nmap <leader>b :Telescope buffers<CR>
 nmap <leader>t :NERDTreeToggle<CR>
@@ -32,7 +29,6 @@ nmap <leader>r :MyGrep -w <cword><CR>
 nmap <leader>c :bp \| bd #<CR>
 nmap <leader>j :%!jq<CR>
 nmap <leader>k :%!jq -c .<CR>
-" nmap <leader>j :%!-print-json<CR>
 
 nmap <leader>p :let @" = expand("%")<CR>
 
