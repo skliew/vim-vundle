@@ -1,18 +1,61 @@
-vim.opt.packpath:append('~/.vim/packpath')
+local lazypath = '~/.vim/lazy.nvim'
+vim.opt.rtp:prepend(lazypath)
 vim.g.editorconfig = false
-vim.cmd([[source ~/.vimrc]])
 
-local packer = require('packer')
-packer.init({
-  package_root = "~/.vim/packpath/pack"
+require('lazy').setup({
+  spec = {
+    { 'neovim/nvim-lspconfig' },
+    { 'wbthomason/packer.nvim' },
+    { 'nvim-telescope/telescope.nvim' },
+    { 'nvim-lua/plenary.nvim' },
+    { 'nvim-treesitter/nvim-treesitter' },
+    { 'ctrlpvim/ctrlp.vim' },
+    { 'vim-scripts/L9' },
+    { 'preservim/nerdtree' },
+    { 'tpope/vim-surround' },
+    { 'vim-scripts/repeat.vim' },
+    { 'vim-scripts/snipMate' },
+    { 'tpope/vim-fugitive' },
+    { 'jnwhiteh/vim-golang' },
+    { 'tpope/vim-commentary' },
+    { 'vim-scripts/ragtag.vim' },
+    { 'vim-scripts/cscope_macros.vim' },
+    { 'pangloss/vim-javascript' },
+    { 'mxw/vim-jsx' },
+    { 'rust-lang/rust.vim' },
+    { 'elzr/vim-json' },
+    { 'dense-analysis/ale' },
+    { 'vim-scripts/matchit.zip' },
+    { 'udalov/kotlin-vim' },
+    { 'hzchirs/vim-material' },
+    { 'chriskempson/base16-vim' },
+    { 'gosukiwi/vim-atom-dark' },
+    { 'leafgarland/typescript-vim' },
+    { 'PhilT/vim-fsharp' },
+    { 'OmniSharp/omnisharp-vim' },
+    { 'neovimhaskell/haskell-vim' },
+    { 'ziglang/zig.vim' },
+    { 'peitalin/vim-jsx-typescript' },
+    { 'croaker/mustang-vim' },
+    { 'twerth/ir_black' },
+    { 'nanotech/jellybeans.vim' },
+    { 'junegunn/fzf' },
+    { 'junegunn/fzf.vim' },
+    { 'zah/nim.vim' },
+    { 'andy-morris/happy.vim' },
+    { 'nvim-telescope/telescope.nvim' },
+    { 'nvim-lua/plenary.nvim' },
+    { 'scalameta/nvim-metals' },
+    { 'dstein64/vim-startuptime' },
+  },
+  -- Configure any other settings here. See the documentation for more details.
+  -- colorscheme that will be used when installing plugins.
+  install = { colorscheme = { "habamax" } },
+  -- automatically check for plugin updates
+  checker = { enabled = false },
 })
-packer.startup(function(use)
-  use('neovim/nvim-lspconfig')
-  use('wbthomason/packer.nvim')
-  use('nvim-telescope/telescope.nvim')
-  use('nvim-lua/plenary.nvim')
-end)
 
+vim.cmd([[source ~/.vimrc]])
 
 function VimBufCompletion(A, L, P)
   return vim.api.nvim_call_function('getcompletion', {"lua vim.lsp.buf." .. A , 'cmdline', ''})
@@ -64,7 +107,7 @@ nvim_lsp.rust_analyzer.setup({
     }
   }
 })
-nvim_lsp.tsserver.setup({
+nvim_lsp.ts_ls.setup({
   on_attach = function(client, bufnr)
     local opts = { noremap=true, silent=true }
     vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
