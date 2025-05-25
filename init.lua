@@ -3,7 +3,10 @@ vim.opt.rtp:prepend(lazypath)
 vim.g.editorconfig = false
 
 require('lazy').setup({
+  root = '~/.vim/lazyinstall',
   spec = {
+    { 'echasnovski/mini.diff' },
+    { 'olimorris/codecompanion.nvim' },
     { 'neovim/nvim-lspconfig' },
     { 'wbthomason/packer.nvim' },
     { 'nvim-telescope/telescope.nvim' },
@@ -133,3 +136,7 @@ require('telescope').setup{
     }
   }
 }
+
+local telescope_builtin = require('telescope.builtin')
+vim.keymap.set('n', '<leader>f', telescope_builtin.find_files)
+vim.keymap.set('n', '<leader>b', telescope_builtin.buffers)

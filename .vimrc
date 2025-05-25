@@ -21,8 +21,10 @@ set ff=unix
 
 " Some shortcuts
 let mapleader=","
-nmap <leader>f :Telescope find_files<CR>
-nmap <leader>b :Telescope buffers<CR>
+if !has('nvim')
+nmap <leader>f :CtrlP<CR>
+nmap <leader>b :CtrlPBuffer<CR>
+endif
 nmap <leader>t :NERDTreeToggle<CR>
 nmap <leader>g :TlistToggle<CR>
 nmap <leader>r :MyGrep -w <cword><CR>
@@ -49,6 +51,7 @@ call vundle#rc()
 
 " let Vundle manage Vundle
 "  " required! 
+if !has('nvim')
 Plugin 'gmarik/Vundle.vim'
 
 Plugin 'ctrlpvim/ctrlp.vim'
@@ -91,6 +94,7 @@ Plugin 'andy-morris/happy.vim'
 Plugin 'nvim-treesitter/nvim-treesitter'
 Plugin 'nvim-telescope/telescope.nvim'
 Plugin 'nvim-lua/plenary.nvim'
+endif
 
 filetype plugin indent on
 set nofoldenable
@@ -137,7 +141,7 @@ let g:syntastic_typescript_checkers = ['tsuquyomi']
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_check_on_open = 0
 let g:syntastic_check_on_wq = 1
-" let g:OmniSharp_loglevel = "debug"
+let g:OmniSharp_loglevel = "info"
 let g:OmniSharp_autoselect_existing_sln = 1
 let g:syntastic_ocaml_checkers = ['merlin']
 set enc=utf8
