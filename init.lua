@@ -5,8 +5,22 @@ vim.g.editorconfig = false
 require('lazy').setup({
   root = '~/.vim/lazyinstall',
   spec = {
-    { 'echasnovski/mini.diff' },
     { 'olimorris/codecompanion.nvim' },
+    { 'andymass/vim-matchup' },
+    {
+        "echasnovski/mini.diff",
+        config = function()
+            local diff = require("mini.diff")
+            diff.setup({
+                -- Disabled by default
+                source = diff.gen_source.none(),
+            })
+        end,
+    },
+    { 'folke/snacks.nvim' },
+    { 'olimorris/codecompanion.nvim' },
+    -- { 'github/copilot.vim' },
+    { 'hrsh7th/nvim-cmp' },
     { 'neovim/nvim-lspconfig' },
     { 'wbthomason/packer.nvim' },
     { 'nvim-telescope/telescope.nvim' },
@@ -138,5 +152,77 @@ require('telescope').setup{
 }
 
 local telescope_builtin = require('telescope.builtin')
+
 vim.keymap.set('n', '<leader>f', telescope_builtin.find_files)
 vim.keymap.set('n', '<leader>b', telescope_builtin.buffers)
+vim.keymap.set('n', '<leader>x', ':CodeCompanionChat<CR>')
+
+vim.g.ale_linters = {
+ cs = {'Omnisharp'}
+}
+
+local cmp = require('cmp')
+cmp.setup {
+    mapping = {
+        ['<C-Space>'] = cmp.mapping.complete(),
+    }
+}
+
+require('codecompanion').setup {
+    opts = {
+    log_level = "DEBUG", -- TRACE|DEBUG|ERROR|INFO
+  },
+  strategies = {
+    chat = {
+      adapter = 'copilot',
+      slash_commands = {
+          ["image"] = {
+              opts = {
+                  provider = "snacks", -- Can be "default", "telescope", "fzf_lua", "mini_pick" or "snacks"
+                  contains_code = true,
+              },
+          },
+          ["buffer"] = {
+              opts = {
+                  provider = "snacks", -- Can be "default", "telescope", "fzf_lua", "mini_pick" or "snacks"
+                  contains_code = true,
+              },
+          }
+      }
+    },
+    inline = {
+      adapter = 'copilot',
+    },
+  },
+  adapters = {
+      http = {
+          copilot = function()
+              return require("codecompanion.adapters").extend("copilot", {
+                  schema = {
+                      model = {
+                          default = "gpt-4.1",
+                      },
+                  },
+              })
+          end,
+          gemini = function()
+              return require("codecompanion.adapters").extend("gemini", {
+                  schema = {
+                      model = {
+                          default = "gemini-2.0-flash",
+                      },
+                  },
+                  env = {
+                      api_key = "<apikey>",
+                  },
+              })
+          end,
+      }
+  },
+  display = {
+    diff = {
+      enabled = true,
+      provider = "mini_diff",
+    },
+  }
+}
